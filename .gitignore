@@ -1,0 +1,20 @@
+# Dependencies and generated output
+node_modules/
+dist/
+output/
+
+# Local source backups (the optimized website assets remain in public/)
+source-assets/
+
+# Local tooling and temporary files
+.playwright-cli/
+*.log
+*.tmp
+*.tar
+*.tar.gz
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
