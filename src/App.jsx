@@ -28,6 +28,7 @@ import GlassSurface from "./components/GlassSurface";
 import LogoLoop from "./components/LogoLoop";
 import PillNav from "./components/PillNav";
 import { portfolioSite, startupContent } from "./content/siteContent";
+import { resolveVideoUrl } from "./utils/mediaUrl";
 import "./App.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -164,7 +165,7 @@ function StartupScene({
       <video
         ref={startupVideoRef}
         className="startup-video"
-        src={startupContent.startupVideo}
+        src={resolveVideoUrl(startupContent.startupVideo)}
         playsInline
         preload="auto"
         onTimeUpdate={onTimeUpdate}
@@ -272,7 +273,7 @@ function HeroSection({ content }) {
     <section className="site-hero" id="hero" data-edit-group="hero">
       <video
         className="hero-bg-video"
-        src={hero.backgroundVideo}
+        src={resolveVideoUrl(hero.backgroundVideo)}
         autoPlay
         muted
         loop
@@ -539,7 +540,7 @@ function AgentProjectCard({ project, index }) {
               {isVideoView && activeVideo?.video ? (
                 <video
                   key={activeVideo.video}
-                  src={activeVideo.video}
+                  src={resolveVideoUrl(activeVideo.video)}
                   poster={activeVideo.poster}
                   controls
                   playsInline
@@ -814,7 +815,7 @@ function CommercialShowcase({ content }) {
             key={activeItem.video}
             ref={videoRef}
             className="commercial-stage-video"
-            src={activeItem.video}
+            src={resolveVideoUrl(activeItem.video)}
             poster={activeItem.poster}
             loop
             playsInline
@@ -1056,7 +1057,7 @@ function ShowcasePreview({ item, onClose }) {
           <video
             ref={previewRef}
             className="showcase-preview-video"
-            src={item.video}
+            src={resolveVideoUrl(item.video)}
             poster={item.poster}
             autoPlay
             loop
