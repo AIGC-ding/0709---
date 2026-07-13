@@ -97,7 +97,11 @@ export default function LogoLoop({
       }
 
       const targetSpeed = isHovering ? hoverSpeed : speed;
-      velocityRef.current += (targetSpeed - velocityRef.current) * 0.08;
+      if (isHovering) {
+        velocityRef.current = targetSpeed;
+      } else {
+        velocityRef.current += (targetSpeed - velocityRef.current) * 0.08;
+      }
       offsetRef.current = mod(
         offsetRef.current + sign * velocityRef.current * deltaSeconds,
         sequenceWidth
@@ -152,6 +156,10 @@ export default function LogoLoop({
       onBlurCapture={resumeLoop}
       onMouseEnter={pauseLoop}
       onMouseLeave={resumeLoop}
+      onPointerDown={pauseLoop}
+      onPointerUp={resumeLoop}
+      onPointerCancel={resumeLoop}
+      onTouchStart={pauseLoop}
     >
       <div className="logoloop__track" ref={trackRef}>
         {renderSequence(0, sequenceRef)}

@@ -1,5 +1,5 @@
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from "ogl";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./CircularGallery.css";
 
 function debounce(func, wait) {
@@ -547,9 +547,27 @@ export default function CircularGallery({
   onItemClick
 }) {
   const containerRef = useRef(null);
+  const [shouldInitialize, setShouldInitialize] = useState(false);
 
   useEffect(() => {
-    if (!containerRef.current) return undefined;
+    const container = containerRef.current;
+    if (!container || shouldInitialize) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setShouldInitialize(true);
+        observer.disconnect();
+      },
+      { rootMargin: "700px 0px" }
+    );
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [shouldInitialize]);
+
+  useEffect(() => {
+    if (!containerRef.current || !shouldInitialize) return undefined;
     let engine;
     let isMounted = true;
 
@@ -571,7 +589,17 @@ export default function CircularGallery({
       isMounted = false;
       engine?.destroy();
     };
-  }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase, onItemClick]);
+  }, [
+    items,
+    bend,
+    textColor,
+    borderRadius,
+    font,
+    scrollSpeed,
+    scrollEase,
+    onItemClick,
+    shouldInitialize
+  ]);
 
   return (
     <div

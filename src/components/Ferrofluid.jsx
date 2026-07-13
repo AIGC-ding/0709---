@@ -273,12 +273,24 @@ export default function Ferrofluid({
       window.addEventListener("pointermove", onPointerMove);
     }
 
+    let isScrolling = false;
+    let scrollTimer;
+    const onScroll = () => {
+      isScrolling = true;
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        isScrolling = false;
+      }, 120);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     let lastRenderTime = 0;
     const frameInterval = 1000 / 30;
     const loop = (time) => {
       rafRef.current = requestAnimationFrame(loop);
       if (
         document.hidden ||
+        isScrolling ||
         document.body.classList.contains("is-media-preview-open") ||
         time - lastRenderTime < frameInterval
       ) {
@@ -304,6 +316,8 @@ export default function Ferrofluid({
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       if (mouseInteraction) window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(scrollTimer);
       observer.disconnect();
       geometry.remove?.();
       program.remove?.();

@@ -145,6 +145,8 @@ function StartupScene({
           className="gate-bg"
           src={startupContent.gateImage}
           alt="DingHaiRan AIGC工程师启动界面"
+          decoding="async"
+          fetchPriority="high"
         />
         <button
           className="gate-hotspot"
@@ -175,6 +177,7 @@ function StartupScene({
             className="entry-bg"
             src={startupContent.entryImage}
             alt="进入作品集入口"
+            decoding="async"
           />
           <button className="entry-action" type="button" onClick={onEnterSite}>
             <ArrowDown size={22} aria-hidden="true" />
@@ -304,7 +307,12 @@ function HeroSection({ content }) {
         </div>
 
         <Magnetic className="hero-visual" strength={22}>
-          <img src={hero.visualImage} alt={`${brand.name} portfolio cube`} />
+          <img
+            src={hero.visualImage}
+            alt={`${brand.name} portfolio cube`}
+            decoding="async"
+            fetchPriority="high"
+          />
           <div className="hero-visual-caption">
             <span>{brand.cnName}</span>
             <strong>{brand.role}</strong>
@@ -344,7 +352,7 @@ function ExperienceSection({ content }) {
         </div>
 
         <div className="experience-portrait reveal-media" data-edit-key="experience.portrait">
-          <img src={content.portrait} alt="丁海蚺头像" />
+          <img src={content.portrait} alt="丁海蚺头像" loading="lazy" decoding="async" />
         </div>
 
         <div className="experience-copy">
@@ -460,7 +468,12 @@ function DefaultProjectCard({ project, index }) {
             className={`project-media reveal-media media-${imageIndex + 1}`}
             key={image}
           >
-            <img src={image} alt={`${project.title} ${imageIndex + 1}`} />
+            <img
+              src={image}
+              alt={`${project.title} ${imageIndex + 1}`}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
         ))}
       </div>
@@ -537,6 +550,8 @@ function AgentProjectCard({ project, index }) {
                   className="agent-stage-image"
                   src={activePanel.image}
                   alt={activePanel.title}
+                  loading="lazy"
+                  decoding="async"
                 />
               )}
               <div>
@@ -560,7 +575,7 @@ function AgentProjectCard({ project, index }) {
                 setActiveView({ type: "panel", id: panel.title });
               }}
             >
-              <img src={panel.image} alt={panel.title} />
+              <img src={panel.image} alt={panel.title} loading="lazy" decoding="async" />
               <span>{panel.label}</span>
               <strong>{panel.title}</strong>
             </button>
@@ -568,7 +583,12 @@ function AgentProjectCard({ project, index }) {
         </div>
 
         <div className="agent-preview-panel">
-          <img src={activePanel.image} alt={activePanel.title} />
+          <img
+            src={activePanel.image}
+            alt={activePanel.title}
+            loading="lazy"
+            decoding="async"
+          />
           <div>
             <span>{activePanel.label}</span>
             <strong>{activePanel.title}</strong>
@@ -630,7 +650,7 @@ function ComfyProjectCard({ project, index }) {
               key={video.id}
               onClick={() => setPreviewItem(video)}
             >
-              <img src={video.poster} alt={video.title} />
+              <img src={video.poster} alt={video.title} loading="lazy" decoding="async" />
               <span>{video.category}</span>
               <strong>{video.title}</strong>
               <em>
@@ -918,7 +938,7 @@ function CommercialThumb({ item, isActive, onSelect }) {
     >
       <span className="commercial-thumb-media">
         {item.poster ? (
-          <img src={item.poster} alt={item.title} />
+          <img src={item.poster} alt={item.title} loading="lazy" decoding="async" />
         ) : (
           <span className="commercial-thumb-placeholder">
             <Clapperboard size={28} aria-hidden="true" />
@@ -1055,6 +1075,7 @@ function ShowcasePreview({ item, onClose }) {
             className="showcase-preview-image"
             src={item.image}
             alt={item.title}
+            decoding="async"
           />
         )}
       </div>

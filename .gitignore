@@ -8,6 +8,7 @@ source-assets/
 
 # Local tooling and temporary files
 .playwright-cli/
+.vercel/
 *.log
 *.tmp
 *.tar

@@ -133,8 +133,8 @@ export const startupContent = {
   name: "DingHaiRan",
   cnName: "丁海蚺",
   role: "AIGC工程师",
-  gateImage: "/assets/launch/opening-gate-a3.png",
-  entryImage: "/assets/launch/entry-cube-a1.png",
+  gateImage: "/assets/launch/opening-gate-a3.webp",
+  entryImage: "/assets/launch/entry-cube-a1.webp",
   startupVideo: "/assets/startup/personal-startup.mp4",
   freezeAtSeconds: 9.15
 };
@@ -160,7 +160,7 @@ export const portfolioSite = {
     summary:
       "我把 AIGC 视觉、ComfyUI 工作流、Agent 自动化和商业视频生产链路整合成稳定可交付的内容系统。",
     backgroundVideo: "/assets/startup/personal-startup.mp4",
-    visualImage: "/assets/launch/entry-cube-a1.png",
+    visualImage: "/assets/launch/entry-cube-a1.webp",
     primaryAction: { label: "查看项目", target: "projects" },
     secondaryAction: { label: "发送邮件", href: "mailto:1914271079@qq.com" },
     tags: ["杭州", "一月内到岗", "AI Agent", "ComfyUI Pipeline"],
